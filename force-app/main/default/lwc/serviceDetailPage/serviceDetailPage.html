@@ -1,0 +1,84 @@
+<template>
+    <div class="slds-m-around_medium slds-box bg-white">
+        <div class="slds-grid slds-grid_vertical-align-center slds-m-bottom_medium">
+            <h3 class="slds-text-heading_small">Service Details</h3>
+            <lightning-button-icon icon-name="utility:external_link" variant="bare" class="slds-m-left_small"></lightning-button-icon>
+            <a href="#" class="slds-text-link_reset slds-text-color_brand slds-m-left_xx-small">View Service History</a>
+        </div>
+
+        <div class="slds-grid slds-gutters slds-wrap slds-m-bottom_medium">
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12">
+                <lightning-input label="Product Status" value={productStatus} disabled></lightning-input>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12">
+                <lightning-input label="Job Card Type / Service Type" value={serviceType} disabled></lightning-input>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12">
+                <lightning-input label="Job Card Location" value={location} disabled></lightning-input>
+            </div>
+        </div>
+
+        <div class="slds-m-bottom_medium">
+            <p>The following checkpoint(s) were marked as “Not OK” during the PDI process: 
+                <a href="#" class="slds-text-color_brand slds-m-left_xx-small">View PDI Report <lightning-button-icon icon-name="utility:external_link" size="xx-small" variant="bare"></lightning-button-icon></a>
+            </p>
+        </div>
+
+        <div class="slds-scrollable_x slds-m-bottom_medium">
+            <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                <thead>
+                    <tr class="slds-line-height_reset">
+                        <th scope="col">S.No.</th>
+                        <th scope="col">Checkpoint</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Recommendation</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Remarks</th>
+                        <th scope="col">Image</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={pdiReport} for:item="item">
+                        <tr key={item.id}>
+                            <td>{item.srNo}</td>
+                            <td>{item.checkpoint}</td>
+                            <td>{item.category}</td>
+                            <td><div class="slds-truncate" title={item.recommendation}>{item.recommendation}</div></td>
+                            <td>{item.status}</td>
+                            <td>
+                                <div class="slds-cell-wrap remarks-cell">
+                                    {item.remarks}
+                                    </div>
+                            </td>
+                            <td><a href="#">{item.fileName}</a></td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="slds-grid slds-gutters slds-wrap">
+            <div class="slds-col slds-size_1-of-1 slds-m-bottom_small">
+                <label class="slds-form-element__label">Additional Repair Recommended 
+                    <lightning-helptext content="Enter any extra details here"></lightning-helptext>
+                </label>
+                <lightning-textarea placeholder="Enter recommended repairs or services" variant="label-hidden" onchange={handleInputChange} data-id="repairs" value={repairs}></lightning-textarea>
+            </div>
+
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_3-of-12">
+                <lightning-input type="number" formatter="currency" label="Service Estimate Amount" placeholder="Enter estimated amount" required onchange={handleInputChange} data-id="amount" value={amount}></lightning-input>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12">
+                <lightning-input type="datetime" label="Service Estimat" required onchange={handleInputChange} data-id="estimate" value={estimate}></lightning-input>
+            </div>
+        </div>
+    </div>
+
+    <div class="slds-m-top_medium slds-p-horizontal_medium slds-grid slds-grid_align-spread slds-grid_vertical-align-center">
+
+        <div class="slds-float_right">
+            <lightning-button label="Back" onclick={handleBack} class="slds-m-right_small"></lightning-button>
+            <lightning-button label="Proceed Job Card" variant="Brand" onclick={handleProceed} ></lightning-button>
+        </div>
+    </div>
+</template>

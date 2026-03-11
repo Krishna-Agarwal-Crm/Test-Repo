@@ -1,0 +1,55 @@
+<template>
+    <div class="slds-m-around_medium slds-box">
+        <h3 class="slds-text-heading_small slds-m-bottom_medium">Tractor Details
+            <lightning-badge class="slds-m-left_small" label="Product Status: PDI"></lightning-badge>
+        </h3>
+        
+        <div class="slds-grid slds-gutters slds-wrap">
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_3-of-12">
+                <lightning-input label="Tractor Chassis No." value={chassisNo} disabled></lightning-input>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_3-of-12">
+                <lightning-input label="Tractor Model" value={tractorModel} disabled></lightning-input>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_3-of-12">
+                <lightning-input label="Tractor Running Hours" value={runningHours} disabled></lightning-input>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_3-of-12">
+                <lightning-combobox 
+                    label="Fuel Indication" 
+                    placeholder="Select" 
+                    options={fuelOptions} 
+                    required
+                    value={localFuelIndication}
+                    onchange={handleInputChange}
+                    data-id="fuelIndication">
+                </lightning-combobox>
+            </div>
+
+            <div class="slds-col slds-size_1-of-1 slds-m-top_medium">
+                <h4 class="slds-text-title_bold">Tyre Pressure (PSI)</h4>
+            </div>
+
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_3-of-12">
+                <lightning-input label="Front Left" placeholder="PSI" value={localTyrePressure.frontLeft} onchange={handleInputChange} data-id="frontLeft"></lightning-input>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_3-of-12">
+                <lightning-input label="Front Right" placeholder="PSI" value={localTyrePressure.frontRight}  onchange={handleInputChange} data-id="frontRight"></lightning-input>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_3-of-12">
+                <lightning-input label="Rear Left" placeholder="PSI" value={localTyrePressure.rearLeft} onchange={handleInputChange} data-id="rearLeft"></lightning-input>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_3-of-12">
+                <lightning-input label="Rear Right" placeholder="PSI" value={localTyrePressure.rearLeft} onchange={handleInputChange} data-id="rearRight"></lightning-input>
+            </div>
+        </div>
+    </div>
+    <div class="slds-clearfix">
+        <div class="slds-float_right slds-button slds-m-right_small">
+            <lightning-button label="Next" variant="brand" onclick={handleNext}></lightning-button>
+        </div>
+        <div class="slds-float_left slds-button slds-m-left_small">
+            <lightning-button label="Back" variant="Neutral" onclick={handleBack}></lightning-button>
+        </div>
+    </div>
+</template>

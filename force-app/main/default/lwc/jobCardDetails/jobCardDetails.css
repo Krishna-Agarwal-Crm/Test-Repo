@@ -1,0 +1,19 @@
+.customHeaderClass{
+    background-color: black;
+    color: white;
+    border-bottom: 20px;
+    border-radius: 2%;
+    border-color:hsl(342 100% 46.3%) ;
+    border-bottom: 5px solid hsl(342, 100%, 46.3%) !important;
+}
+.header-text {
+    color: white;
+    font-weight: bold;
+    padding: 10px 0;
+}
+
+.local-header-container {
+    position: relative;
+    width: 100%;
+    margin-bottom: 1rem;
+}

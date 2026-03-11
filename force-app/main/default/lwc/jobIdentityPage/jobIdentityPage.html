@@ -1,0 +1,65 @@
+<template>
+    <div class="slds-m-around_medium slds-box">
+        <h3 class="slds-text-heading_small slds-m-bottom_medium">Identify Product</h3>
+        
+        <div class="slds-grid slds-gutters slds-wrap">
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12 slds-is-relative" >
+                <lightning-input 
+                    type="search" 
+                    label="Tractor/Implement Chassis No." 
+                    required 
+                    value={localChassisNo}
+                    onchange={handleChassisChange}
+                    data-id="chassisNo">
+                </lightning-input>
+
+                <template if:true={showSuggestions}>
+                    <div class="slds-dropdown slds-dropdown_fluid chassis-dropdown" role="listbox">
+                        <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+                            <template for:each={suggestions} for:item="chassis">
+                                <li key={chassis.Id} role="presentation" class="slds-listbox__item">
+                                    <div data-id={chassis.Id} data-name={chassis.Chassis__c} onclick={handleSelectChassis}
+                                        class="slds-media slds-listbox__option slds-listbox__option_plain slds-media_small" role="option">
+                                        <span class="slds-media__body">
+                                            <span class="slds-truncate" title={chassis.Chassis__c}>{chassis.Chassis__c}</span>
+                                        </span>
+                                    </div>
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
+                </template>
+            </div>
+
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_3-of-12">
+                <lightning-radio-group 
+                    name="hourMeter"
+                    label="Hour Meter Working"
+                    options={options}
+                    value={radioValue}
+                    type="radio"
+                    class="custom-radio-horizontal"
+                    onchange={handleRadioChange}>
+                </lightning-radio-group>
+            </div>
+
+            <template if:true={isHourMeter}>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12">
+                    <lightning-input 
+                        type="number" 
+                        label="Tractor Running Hours" 
+                        required 
+                        value={localRunningHours}
+                        onchange={handleInputChange}
+                        data-id="runningHours">
+                    </lightning-input>
+                </div>
+            </template>
+        </div>
+    </div>
+    <div class="slds-clearfix">
+        <div class="slds-float_right slds-button slds-m-right_small">
+            <lightning-button label="Next" variant="brand" onclick={handleNext}></lightning-button>
+        </div>
+    </div>
+</template>

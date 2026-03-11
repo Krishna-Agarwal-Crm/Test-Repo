@@ -1,0 +1,20 @@
+<template>
+    
+        <div class="slds-p-around_medium">
+            <lightning-progress-indicator 
+                current-step={currentStep} 
+                type="base" 
+                variant="base">
+                <lightning-progress-step value="1"></lightning-progress-step>
+                <lightning-progress-step value="2"></lightning-progress-step>
+                <lightning-progress-step value="3"></lightning-progress-step>
+            </lightning-progress-indicator>
+
+            <div class="slds-grid slds-grid_align-spread slds-m-top_x-small custom-label-row">
+                <div >Identify Product</div>
+                <div >Product & Customer Details</div>
+                <div >Service Details</div>
+            </div>
+        </div>
+
+</template>

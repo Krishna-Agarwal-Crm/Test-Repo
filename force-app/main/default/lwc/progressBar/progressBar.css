@@ -1,0 +1,10 @@
+.custom-label-row {
+    font-size: 0.75rem;
+    color: #3e3e3c;
+    text-align: center;
+}
+
+.custom-label-row div {
+    flex: 1; 
+    width: 33%;
+}
