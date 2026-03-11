@@ -4,7 +4,7 @@ public class jobCardCreate {
     public static List<OpportunityLineItem> getChassisSuggestions(String searchKey){
         System.debug(searchKey);
         if(!String.isBlank(searchKey)){
-        	searchKey=searchKey+'%';
+        	searchKey='%'+searchKey+'%';
             return [SELECT Opportunity.Account.phone, Product2.Name, Chassis__c from OpportunityLineItem where Chassis__c like: searchKey];
         }
         else{
